@@ -10,11 +10,17 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = auth()->user()->tasks()
-        ->latest()
-        ->get();
+        $query = auth()->user()->tasks();
+
+        if ($request->filter === 'pending') {
+            $query->where('status', false);
+        } elseif ($request->filter === 'completed') {
+            $query->where('status', true);
+        }
+
+        $tasks = $query->latest()->get();
 
         return view('home', ['tasks' => $tasks]);
     }

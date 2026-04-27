@@ -3,39 +3,46 @@
         Sign In
     </x-slot:title>
 
-    <div>
+    <div class="d-flex justify-content-center align-items-center vh-100">
         <div>
             <div>
-                <div>
-                    <h1>Welcome Back</h1>
+                <div class="card p-4 shadow" style="width: 40rem;">
+                    <div class="mb-5 row"><h1>Welcome Back</h1></div>
 
-                    <form method="POST" action="/login">
+                    <form method="POST" action="/login" class="row g-3">
                         @csrf
 
                         <!-- Email -->
-                        <label>
-                            <input type="email"
-                                   name="email"
-                                   placeholder="mail@example.com"
-                                   value="{{ old('email') }}"
-                                   required
-                                   autofocus>
-                            <span>Email</span>
-                        </label>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email"
+                                    name="email"
+                                    class="form-control"
+                                    placeholder="mail@example.com"
+                                    value="{{ old('email') }}"
+                                    required
+                                    autofocus>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password"
+                                    name="password"
+                                    class="form-control"
+                                    placeholder="••••••••"
+                                    required>
+                            </div>
+                        </div>
+
                         @error('email')
                             <div>
                                 <span>{{ $message }}</span>
                             </div>
                         @enderror
-
-                        <!-- Password -->
-                        <label>
-                            <input type="password"
-                                   name="password"
-                                   placeholder="••••••••"
-                                   required>
-                            <span>Password</span>
-                        </label>
                         @error('password')
                             <div>
                                 <span>{{ $message }}</span>
@@ -53,7 +60,7 @@
 
                         <!-- Submit Button -->
                         <div>
-                            <button type="submit">
+                            <button type="submit" class="btn btn-outline-success">
                                 Sign In
                             </button>
                         </div>

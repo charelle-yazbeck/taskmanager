@@ -25,6 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/tasks/{task}/complete', [TaskController::class, 'complete']);
 
     Route::post('/logout', Logout::class)->name('logout');
+
+    Route::get('/tasks', [TaskController::class, 'index'])
+    ->name('tasks.index');
 });
 
 /**
